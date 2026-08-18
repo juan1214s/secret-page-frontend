@@ -1,0 +1,158 @@
+<div class="flex items-center gap-3 px-7 py-3.5 bg-surface border-b border-line">
+  <a routerLink="/admin/perfiles" class="text-ink-muted hover:text-ink" aria-label="Volver a perfiles">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6" /></svg>
+  </a>
+  <h1 class="text-[16.5px] font-bold m-0 tracking-[-0.01em]">
+    {{ isEditMode ? 'Editar perfil' : 'Nuevo perfil' }}
+  </h1>
+</div>
+
+@if (loading()) {
+  <div class="px-7 py-10 text-[13.5px] text-ink-muted">Cargando…</div>
+} @else {
+  <div class="p-7 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start max-w-[1080px]">
+    <form [formGroup]="form" (ngSubmit)="save()" class="bg-surface border border-line rounded-xl p-6 flex flex-col gap-4">
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[12.5px] font-semibold text-ink-muted">Nombre</span>
+        <input
+          formControlName="name"
+          class="rounded-lg border border-line bg-surface-sunken px-3 py-2.5 text-[14px] outline-none focus:border-accent focus:bg-surface"
+          placeholder="Nombre del perfil"
+        />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <span class="text-[12px] text-danger">Debe tener entre 3 y 60 caracteres.</span>
+        }
+      </label>
+
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[12.5px] font-semibold text-ink-muted">Descripción</span>
+        <textarea
+          formControlName="description"
+          rows="4"
+          class="rounded-lg border border-line bg-surface-sunken px-3 py-2.5 text-[14px] outline-none focus:border-accent focus:bg-surface resize-y"
+          placeholder="Máximo 1000 caracteres"
+        ></textarea>
+        @if (form.controls.description.invalid && form.controls.description.touched) {
+          <span class="text-[12px] text-danger">Máximo 1000 caracteres.</span>
+        }
+      </label>
+
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[12.5px] font-semibold text-ink-muted">WhatsApp</span>
+        <input
+          formControlName="whatsappNumber"
+          class="rounded-lg border border-line bg-surface-sunken px-3 py-2.5 text-[14px] outline-none focus:border-accent focus:bg-surface"
+          placeholder="3XXXXXXXXX o +573XXXXXXXXX"
+        />
+        @if (form.controls.whatsappNumber.invalid && form.controls.whatsappNumber.touched) {
+          <span class="text-[12px] text-danger">Debe ser un celular colombiano válido.</span>
+        }
+      </label>
+
+      <label class="flex flex-col gap-1.5">
+        <span class="text-[12.5px] font-semibold text-ink-muted">Ciudad</span>
+        <select
+          formControlName="cityId"
+          class="rounded-lg border border-line bg-surface-sunken px-3 py-2.5 text-[14px] outline-none focus:border-accent focus:bg-surface"
+        >
+          <option value="" disabled>Selecciona una ciudad</option>
+          @for (city of cities(); track city.id) {
+            <option [value]="city.id">{{ city.name }}</option>
+          }
+        </select>
+        @if (form.controls.cityId.invalid && form.controls.cityId.touched) {
+          <span class="text-[12px] text-danger">Selecciona una ciudad.</span>
+        }
+      </label>
+
+      @if (!isEditMode) {
+        <p class="text-[12.5px] text-ink-muted bg-surface-sunken rounded-lg px-3 py-2.5 m-0">
+          Al guardar podrás destacar el perfil, ajustar su prioridad y subir imágenes.
+        </p>
+      }
+
+      <button
+        type="submit"
+        [disabled]="saving()"
+        class="self-start mt-1 rounded-lg bg-accent text-white font-semibold text-[13.5px] px-5 py-2.5 disabled:opacity-60"
+      >
+        {{ saving() ? 'Guardando…' : 'Guardar' }}
+      </button>
+    </form>
+
+    <div class="flex flex-col gap-5">
+      @if (isEditMode) {
+        <div class="bg-surface border border-line rounded-xl p-5 flex flex-col gap-3.5">
+          <h2 class="text-[13.5px] font-bold m-0">Visibilidad</h2>
+          <form [formGroup]="form" class="flex flex-col gap-3.5">
+            <label class="flex items-center justify-between gap-3 text-[13.5px]">
+              Activo
+              <input type="checkbox" formControlName="active" class="accent-[color:var(--color-accent)] w-4 h-4" />
+            </label>
+            <label class="flex items-center justify-between gap-3 text-[13.5px]">
+              Destacado
+              <input type="checkbox" formControlName="isFeatured" class="accent-[color:var(--color-accent)] w-4 h-4" />
+            </label>
+            <label class="flex flex-col gap-1.5">
+              <span class="text-[12.5px] font-semibold text-ink-muted">Prioridad (0–100)</span>
+              <input
+                type="number"
+                formControlName="priorityScore"
+                min="0"
+                max="100"
+                class="rounded-lg border border-line bg-surface-sunken px-3 py-2 text-[14px] outline-none focus:border-accent focus:bg-surface font-mono [font-variant-numeric:tabular-nums]"
+              />
+            </label>
+          </form>
+        </div>
+
+        <div class="bg-surface border border-line rounded-xl p-5 flex flex-col gap-3.5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-[13.5px] font-bold m-0">Imágenes</h2>
+            <button
+              type="button"
+              (click)="triggerUpload()"
+              [disabled]="uploading()"
+              class="text-[12.5px] font-semibold text-accent disabled:opacity-60"
+            >
+              {{ uploading() ? 'Subiendo…' : '+ Subir' }}
+            </button>
+            <input #fileInput type="file" accept="image/jpeg,image/png,image/webp" class="hidden" (change)="onFileSelected($event)" />
+          </div>
+
+          @if (images().length === 0) {
+            <p class="text-[13px] text-ink-muted m-0">Aún no hay imágenes.</p>
+          } @else {
+            <div class="grid grid-cols-3 gap-2.5">
+              @for (image of images(); track image.id) {
+                <div class="relative rounded-lg overflow-hidden border border-line group">
+                  <img [src]="image.url" [alt]="'Imagen de perfil'" class="w-full h-[84px] object-cover" />
+                  @if (image.isMain) {
+                    <span class="absolute top-1.5 left-1.5 text-[10px] font-semibold bg-accent text-white px-1.5 py-0.5 rounded-full">
+                      Principal
+                    </span>
+                  }
+                  <div class="absolute inset-0 bg-[rgba(18,24,32,0.55)] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5">
+                    @if (!image.isMain) {
+                      <app-icon-button label="Marcar como principal" tone="ok" (pressed)="setMain(image)">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.5 6.8L12 17l-6.2 3.4 1.5-6.8-5.1-4.6 6.9-.7z" />
+                        </svg>
+                      </app-icon-button>
+                    }
+                    <app-icon-button label="Eliminar imagen" tone="danger" (pressed)="removeImage(image)">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18" /><path d="M8 6V4h8v2M6 6l1 14h10l1-14" />
+                      </svg>
+                    </app-icon-button>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+          <p class="text-[11.5px] text-ink-muted m-0">JPEG, PNG o WEBP · máximo 5 MB.</p>
+        </div>
+      }
+    </div>
+  </div>
+}

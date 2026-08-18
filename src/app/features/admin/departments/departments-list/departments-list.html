@@ -1,0 +1,81 @@
+<div class="flex items-center gap-4 px-7 py-3.5 bg-surface border-b border-line flex-wrap">
+  <h1 class="text-[16.5px] font-bold m-0 tracking-[-0.01em]">Departamentos</h1>
+  <div class="flex items-center gap-2 bg-surface-sunken border border-line rounded-lg px-3 py-[7px] flex-1 max-w-[320px]">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B6570" stroke-width="1.8">
+      <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+    </svg>
+    <input
+      [ngModel]="search()"
+      (ngModelChange)="search.set($event)"
+      placeholder="Buscar departamento…"
+      class="border-none bg-transparent outline-none text-[13.5px] w-full"
+    />
+  </div>
+  <button type="button" (click)="openCreate()" class="ml-auto rounded-lg bg-accent text-white text-[13px] font-semibold px-4 py-2">
+    Nuevo departamento
+  </button>
+</div>
+
+@if (loading()) {
+  <div class="px-7 py-10 text-[13.5px] text-ink-muted">Cargando…</div>
+} @else if (filtered().length === 0) {
+  <div class="px-7 py-10 text-[13.5px] text-ink-muted">No hay departamentos que coincidan con la búsqueda.</div>
+} @else {
+  <table class="w-full border-collapse bg-surface">
+    <thead>
+      <tr>
+        <th class="text-left text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">
+          Nombre
+        </th>
+        <th class="text-right text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dept of filtered(); track dept.id) {
+        <tr class="hover:bg-surface-sunken">
+          <td class="px-7 py-[13px] border-b border-line text-[13.5px]">{{ dept.name }}</td>
+          <td class="px-7 py-[13px] border-b border-line">
+            <div class="flex justify-end gap-1.5">
+              <app-icon-button label="Editar" (pressed)="openEdit(dept)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                </svg>
+              </app-icon-button>
+              <app-icon-button label="Eliminar" tone="danger" (pressed)="remove(dept)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 6h18" /><path d="M8 6V4h8v2M6 6l1 14h10l1-14" />
+                </svg>
+              </app-icon-button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+<app-modal [open]="modalOpen()" [title]="editing() ? 'Editar departamento' : 'Nuevo departamento'" (closed)="closeModal()">
+  <form [formGroup]="form" (ngSubmit)="save()" class="flex flex-col gap-4">
+    <label class="flex flex-col gap-1.5">
+      <span class="text-[12.5px] font-semibold text-ink-muted">Nombre</span>
+      <input
+        formControlName="name"
+        class="rounded-lg border border-line bg-surface-sunken px-3 py-2.5 text-[14px] outline-none focus:border-accent focus:bg-surface"
+        placeholder="Ej. Antioquia"
+      />
+      @if (form.controls.name.invalid && form.controls.name.touched) {
+        <span class="text-[12px] text-danger">Debe tener entre 3 y 30 caracteres.</span>
+      }
+    </label>
+    <div class="flex justify-end gap-2 mt-1">
+      <button type="button" (click)="closeModal()" class="px-4 py-2 rounded-lg text-[13.5px] font-semibold border border-line">
+        Cancelar
+      </button>
+      <button type="submit" [disabled]="saving()" class="px-4 py-2 rounded-lg text-[13.5px] font-semibold bg-accent text-white disabled:opacity-60">
+        {{ saving() ? 'Guardando…' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</app-modal>

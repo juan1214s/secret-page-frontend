@@ -1,0 +1,69 @@
+<div class="grid grid-cols-[216px_1fr] min-h-screen bg-bg">
+  <aside class="bg-surface border-r border-line py-5 flex flex-col">
+    <div class="flex items-center gap-[9px] px-5 pb-[18px] border-b border-line mb-1.5">
+      <span class="w-[9px] h-[9px] rounded-full bg-ok shadow-[0_0_0_3px_var(--color-ok-tint)]"></span>
+      <span class="font-bold text-[14.5px] tracking-[-0.01em]">Sala de Control</span>
+    </div>
+
+    <nav class="flex flex-col px-2.5 py-2.5 gap-px">
+      @for (entry of nav; track entry.path) {
+        <a
+          [routerLink]="entry.path"
+          routerLinkActive="bg-accent text-white font-semibold"
+          #rla="routerLinkActive"
+          class="flex items-center gap-2.5 px-3 py-[9px] rounded-lg text-[13.5px] text-ink-muted transition-colors"
+          [class.hover:bg-surface-sunken]="!rla.isActive"
+          [class.hover:text-ink]="!rla.isActive"
+        >
+          <span class="flex-none w-[15px] h-[15px] inline-flex">
+            @switch (entry.icon) {
+              @case ('comments') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4V5z" /></svg>
+              }
+              @case ('profiles') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="8" r="3.2" /><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" />
+                </svg>
+              }
+              @case ('cities') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" /><circle cx="12" cy="10" r="2.4" />
+                </svg>
+              }
+              @case ('departments') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="8" height="8" /><rect x="13" y="3" width="8" height="8" />
+                  <rect x="3" y="13" width="8" height="8" /><rect x="13" y="13" width="8" height="8" />
+                </svg>
+              }
+              @case ('users') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="9" cy="8" r="3" /><path d="M2 20c1-3.3 3.3-5 7-5s6 1.7 7 5" /><circle cx="18" cy="7.5" r="2" />
+                </svg>
+              }
+            }
+          </span>
+          {{ entry.label }}
+        </a>
+      }
+    </nav>
+
+    <div class="mt-auto px-5 pt-3.5 border-t border-line flex flex-col gap-2">
+      <div class="flex items-center justify-between text-[11.5px] text-ink-muted">
+        <span class="truncate">{{ currentUser()?.email }}</span>
+        <span>{{ currentUser()?.role }}</span>
+      </div>
+      <button
+        type="button"
+        class="text-[12.5px] font-semibold text-ink-muted hover:text-danger text-left"
+        (click)="onLogout()"
+      >
+        Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <main class="min-w-0">
+    <router-outlet />
+  </main>
+</div>

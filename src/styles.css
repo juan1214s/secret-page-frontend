@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*
+  Design world: "Mesa de Despacho" (Direction B, locked 2026-08-17).
+  Restrained palette — cool light neutrals + one signal accent (teal-blue).
+  Semantic status colors (ok/warn/off/danger) are separate from the accent
+  and drive state chips, dots, and row actions across the admin panel.
+*/
+@theme {
+  --color-bg: #edf1f4;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f4f7f9;
+  --color-ink: #121820;
+  --color-ink-muted: #5b6570;
+  --color-line: #dce3e8;
+
+  --color-accent: #0b6e8c;
+  --color-accent-tint: #ddeff3;
+
+  --color-ok: #2f8f5b;
+  --color-ok-tint: #e1f1e8;
+  --color-warn: #c1861b;
+  --color-warn-tint: #fbeed9;
+  --color-off: #8a94a0;
+  --color-off-tint: #eef1f3;
+  --color-danger: #c33f3f;
+  --color-danger-tint: #f8e4e4;
+
+  --font-sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, Menlo, monospace;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent-tint);
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+* {
+  box-sizing: border-box;
+}

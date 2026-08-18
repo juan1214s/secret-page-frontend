@@ -1,0 +1,25 @@
+<div class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 w-[min(360px,calc(100vw-2.5rem))]">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <div
+      class="flex items-start gap-3 rounded-[10px] border bg-surface px-4 py-3 text-[13.5px] shadow-[0_4px_16px_rgba(18,24,32,0.12)]"
+      [class.border-line]="toast.tone === 'info'"
+      [class.text-ink]="toast.tone === 'info'"
+      [class.border-ok]="toast.tone === 'ok'"
+      [class.text-ok]="toast.tone === 'ok'"
+      [class.border-danger]="toast.tone === 'danger'"
+      [class.text-danger]="toast.tone === 'danger'"
+    >
+      <span class="flex-1 leading-snug">{{ toast.message }}</span>
+      <button
+        type="button"
+        class="text-ink-muted hover:text-ink"
+        (click)="toastService.dismiss(toast.id)"
+        aria-label="Cerrar aviso"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+  }
+</div>
