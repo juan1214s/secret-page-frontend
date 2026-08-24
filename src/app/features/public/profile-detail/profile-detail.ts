@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProfilesApiService } from '../../../core/services/profiles-api.service';
 import { CommentsApiService } from '../../../core/services/comments-api.service';
+import { ProfileClicksApiService } from '../../../core/services/profile-clicks-api.service';
 import { Profile } from '../../../core/models/profile.model';
 import { ProfileComment } from '../../../core/models/comment.model';
 import { ImageGallery } from '../components/image-gallery/image-gallery';
@@ -17,6 +18,7 @@ export class ProfileDetail implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly profilesApi = inject(ProfilesApiService);
   private readonly commentsApi = inject(CommentsApiService);
+  private readonly profileClicksApi = inject(ProfileClicksApiService);
 
   protected readonly profile = signal<Profile | null>(null);
   protected readonly comments = signal<ProfileComment[]>([]);
@@ -75,6 +77,8 @@ export class ProfileDetail implements OnInit {
       next: (profile) => {
         this.profile.set(profile);
         this.loading.set(false);
+        // Fire-and-forget: un fallo al registrar el click no debe afectar la vista.
+        this.profileClicksApi.register(id).subscribe({ error: () => {} });
       },
       error: () => {
         this.notFound.set(true);

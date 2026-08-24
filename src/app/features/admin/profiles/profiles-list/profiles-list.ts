@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Profile } from '../../../../core/models/profile.model';
 import { ConfirmService } from '../../../../core/services/confirm.service';
 import { ProfilesApiService } from '../../../../core/services/profiles-api.service';
+import { ProfileClicksApiService } from '../../../../core/services/profile-clicks-api.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { IconButton } from '../../../../shared/ui/icon-button/icon-button';
 
@@ -14,6 +15,7 @@ import { IconButton } from '../../../../shared/ui/icon-button/icon-button';
 })
 export class ProfilesList implements OnInit {
   private readonly api = inject(ProfilesApiService);
+  private readonly clicksApi = inject(ProfileClicksApiService);
   private readonly confirm = inject(ConfirmService);
   private readonly toast = inject(ToastService);
   private readonly router = inject(Router);
@@ -21,6 +23,7 @@ export class ProfilesList implements OnInit {
   protected readonly profiles = signal<Profile[]>([]);
   protected readonly loading = signal(true);
   protected readonly search = signal('');
+  protected readonly clickCounts = signal<Map<string, number>>(new Map());
 
   protected readonly filtered = computed(() => {
     const term = this.search().trim().toLowerCase();
@@ -45,6 +48,17 @@ export class ProfilesList implements OnInit {
       },
       error: () => this.loading.set(false),
     });
+
+    this.clicksApi.getCounts().subscribe({
+      next: (counts) => {
+        this.clickCounts.set(new Map(counts.map((entry) => [entry.profileId, entry.count])));
+      },
+      error: () => {},
+    });
+  }
+
+  protected clicksFor(profile: Profile): number {
+    return this.clickCounts().get(profile.id) ?? 0;
   }
 
   protected edit(profile: Profile): void {

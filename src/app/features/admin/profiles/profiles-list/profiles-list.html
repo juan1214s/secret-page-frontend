@@ -29,6 +29,7 @@
           <th class="text-left text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">Ciudad</th>
           <th class="text-left text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">Estado</th>
           <th class="text-left text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">Prioridad</th>
+          <th class="text-left text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">Clicks</th>
           <th class="text-right text-[11px] font-bold tracking-[0.04em] text-ink-muted uppercase px-7 py-[11px] border-b border-line">Acciones</th>
         </tr>
       </thead>
@@ -54,6 +55,9 @@
             </td>
             <td class="px-7 py-[13px] border-b border-line font-mono text-[12.5px] text-ink-muted [font-variant-numeric:tabular-nums]">
               {{ profile.priorityScore }}
+            </td>
+            <td class="px-7 py-[13px] border-b border-line font-mono text-[12.5px] text-ink-muted [font-variant-numeric:tabular-nums]">
+              {{ clicksFor(profile) }}
             </td>
             <td class="px-7 py-[13px] border-b border-line" (click)="$event.stopPropagation()">
               <div class="flex justify-end gap-1.5">
