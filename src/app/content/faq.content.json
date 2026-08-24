@@ -1,0 +1,21 @@
+{
+  "heading": "Preguntas frecuentes",
+  "items": [
+    {
+      "question": "¿Cómo contacto a un perfil publicado?",
+      "answer": "Al entrar al detalle de cada perfil encontrarás un botón para escribir directamente por WhatsApp."
+    },
+    {
+      "question": "¿Cómo publico mi propio perfil?",
+      "answer": "Escríbenos por WhatsApp desde la sección de contacto y te guiamos con el proceso de publicación y verificación."
+    },
+    {
+      "question": "¿Los perfiles están verificados?",
+      "answer": "Sí, cada perfil pasa por una revisión antes de quedar visible en el sitio."
+    },
+    {
+      "question": "¿Puedo dejar un comentario sobre un perfil?",
+      "answer": "Sí, desde la página de cada perfil puedes dejar tu comentario, el cual se publica luego de ser revisado."
+    }
+  ]
+}

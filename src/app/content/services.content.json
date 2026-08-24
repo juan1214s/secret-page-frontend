@@ -1,0 +1,25 @@
+{
+  "heading": "Nuestros servicios",
+  "items": [
+    {
+      "icon": "shield",
+      "title": "Perfiles verificados",
+      "description": "Cada publicación pasa por una revisión antes de estar visible al público."
+    },
+    {
+      "icon": "map-pin",
+      "title": "Búsqueda por ciudad",
+      "description": "Encuentra perfiles disponibles cerca de ti en distintas ciudades del país."
+    },
+    {
+      "icon": "chat",
+      "title": "Contacto directo",
+      "description": "Comunícate directamente por WhatsApp sin intermediarios ni demoras."
+    },
+    {
+      "icon": "star",
+      "title": "Soporte prioritario",
+      "description": "Atención dedicada para resolver dudas antes y después de contactar."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+<div class="flex min-h-screen flex-col bg-black text-red-500">
+  <header class="border-b border-red-900/30 bg-black">
+    <div class="mx-auto flex max-w-6xl items-center justify-center px-6 py-4">
+      <a routerLink="/" class="text-lg font-bold tracking-wide text-red-500 hover:text-red-400">
+        Perfiles<span class="text-red-700">Laborales</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <router-outlet />
+  </main>
+
+  <footer class="border-t border-red-900/30 bg-black">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10 md:flex-row md:items-start md:justify-between">
+      <div class="flex flex-col gap-3">
+        <span class="text-sm text-red-500/60">{{ footer.copyright }}</span>
+        <div class="flex flex-wrap items-center gap-3 text-xs text-red-500/50">
+          <span>{{ footer.acceptedPaymentsLabel }}</span>
+          <span class="inline-flex gap-2">
+            <svg viewBox="0 0 24 16" class="h-4 w-6" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="0.5" y="0.5" width="23" height="15" rx="2" />
+              <rect x="0.5" y="4.5" width="23" height="3" fill="currentColor" stroke="none" />
+            </svg>
+            <svg viewBox="0 0 24 16" class="h-4 w-6" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="0.5" y="0.5" width="23" height="15" rx="2" />
+              <rect x="3" y="3" width="4" height="3" rx="0.5" fill="currentColor" stroke="none" />
+              <path d="M3 11h6M11 11h6" stroke-width="1.2" />
+            </svg>
+            <svg viewBox="0 0 24 16" class="h-4 w-6" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="0.5" y="0.5" width="23" height="15" rx="2" />
+              <circle cx="6" cy="11" r="1" fill="currentColor" stroke="none" />
+              <circle cx="10" cy="11" r="1" fill="currentColor" stroke="none" />
+              <circle cx="14" cy="11" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <nav class="flex flex-col gap-2 text-sm">
+        @for (link of footer.links; track link.label) {
+          @if (link.route) {
+            <a [routerLink]="link.route" class="text-red-500/70 hover:text-red-400">{{ link.label }}</a>
+          } @else {
+            <a routerLink="/" [fragment]="link.fragment" class="text-red-500/70 hover:text-red-400">{{ link.label }}</a>
+          }
+        }
+      </nav>
+    </div>
+  </footer>
+</div>

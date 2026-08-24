@@ -1,0 +1,7 @@
+{
+  "heading": "Nuestros perfiles",
+  "subheading": "Descubre los perfiles disponibles en tu ciudad.",
+  "showMoreLabel": "Ver más",
+  "emptyMessage": "Por ahora no hay perfiles disponibles.",
+  "loadingMessage": "Cargando perfiles..."
+}

@@ -1,0 +1,93 @@
+<div class="mx-auto max-w-5xl px-6 py-12">
+  <a routerLink="/" fragment="perfiles" class="mb-8 inline-flex items-center gap-2 text-sm text-red-500/70 hover:text-red-400">
+    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+    Volver a perfiles
+  </a>
+
+  @if (loading()) {
+    <p class="text-sm text-red-500/50">Cargando perfil...</p>
+  } @else if (notFound() || !profile()) {
+    <p class="text-sm text-red-500/50">No encontramos este perfil.</p>
+  } @else {
+    @let p = profile()!;
+
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
+      <app-image-gallery [images]="p.images ?? []" />
+
+      <div class="flex flex-col gap-4">
+        <h1 class="text-3xl font-bold text-red-500">{{ p.name }}</h1>
+        @if (p.city?.name) {
+          <p class="text-sm uppercase tracking-wide text-red-500/50">{{ p.city?.name }}</p>
+        }
+        @if (p.description) {
+          <p class="text-sm leading-relaxed text-red-500/70">{{ p.description }}</p>
+        }
+
+        <a
+          [href]="whatsappHref()"
+          target="_blank"
+          rel="noopener"
+          class="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500"
+        >
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <section class="mt-16">
+      <h2 class="mb-6 text-xl font-bold text-red-500">Comentarios</h2>
+
+      @if (comments().length === 0) {
+        <p class="text-sm text-red-500/50">Aún no hay comentarios para este perfil.</p>
+      } @else {
+        <div class="flex flex-col gap-4">
+          @for (comment of comments(); track comment.id) {
+            <div class="rounded-lg border border-red-900/20 bg-zinc-950 p-4">
+              <div class="mb-1 flex items-center justify-between">
+                <span class="text-sm font-semibold text-red-400">{{ comment.authorName }}</span>
+                <span class="text-xs text-red-500/40">{{ comment.createdAt | date: 'mediumDate' }}</span>
+              </div>
+              <p class="text-sm text-red-500/70">{{ comment.content }}</p>
+            </div>
+          }
+        </div>
+      }
+
+      <div class="mt-8 max-w-lg">
+        @if (submitted()) {
+          <p class="text-sm text-red-400">
+            ¡Gracias! Tu comentario quedó pendiente de revisión y se publicará pronto.
+          </p>
+        } @else {
+          <form class="flex flex-col gap-3" (ngSubmit)="submitComment()">
+            <input
+              type="text"
+              name="authorName"
+              placeholder="Tu nombre"
+              [ngModel]="authorName()"
+              (ngModelChange)="authorName.set($event)"
+              required
+              class="rounded border border-red-900/30 bg-black px-4 py-2 text-sm text-red-400 placeholder:text-red-900/50 focus:border-red-600 focus:outline-none"
+            />
+            <textarea
+              name="commentText"
+              placeholder="Escribe tu comentario"
+              rows="3"
+              [ngModel]="commentText()"
+              (ngModelChange)="commentText.set($event)"
+              required
+              class="rounded border border-red-900/30 bg-black px-4 py-2 text-sm text-red-400 placeholder:text-red-900/50 focus:border-red-600 focus:outline-none"
+            ></textarea>
+            <button
+              type="submit"
+              [disabled]="submitting()"
+              class="w-fit rounded-full border border-red-600 px-6 py-2 text-sm font-semibold text-red-400 transition-colors hover:bg-red-600/10 disabled:opacity-50"
+            >
+              {{ submitting() ? 'Enviando...' : 'Publicar comentario' }}
+            </button>
+          </form>
+        }
+      </div>
+    </section>
+  }
+</div>

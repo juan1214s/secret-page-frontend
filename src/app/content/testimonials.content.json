@@ -1,0 +1,9 @@
+{
+  "heading": "Experiencia de nuestros clientes más prestigiosos:",
+  "items": [
+    { "rating": 5, "quote": "Inolvidable, para repetir." },
+    { "rating": 4, "quote": "Excelente servicio de principio a fin." },
+    { "rating": 5, "quote": "Justo lo que necesitaba." },
+    { "rating": 5, "quote": "Los sueños sí se hacen realidad." }
+  ]
+}

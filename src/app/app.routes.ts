@@ -2,7 +2,21 @@ import { Routes } from '@angular/router';
 import { adminGuard, guestGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'admin' },
+  {
+    path: '',
+    loadComponent: () => import('./layout/public-shell/public-shell').then((m) => m.PublicShell),
+    children: [
+      { path: '', loadComponent: () => import('./features/public/home/home').then((m) => m.Home) },
+      {
+        path: 'perfil/:id',
+        loadComponent: () => import('./features/public/profile-detail/profile-detail').then((m) => m.ProfileDetail),
+      },
+      {
+        path: 'terminos-y-condiciones',
+        loadComponent: () => import('./features/public/terms/terms').then((m) => m.Terms),
+      },
+    ],
+  },
   {
     path: 'admin/login',
     canActivate: [guestGuard],
@@ -45,5 +59,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: 'admin' },
+  { path: '**', redirectTo: '' },
 ];

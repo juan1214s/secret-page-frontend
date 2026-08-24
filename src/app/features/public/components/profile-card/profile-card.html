@@ -1,0 +1,22 @@
+<a
+  [routerLink]="['/perfil', profile().id]"
+  class="group relative block aspect-[3/4] overflow-hidden rounded-lg border border-red-900/20 bg-zinc-900"
+>
+  @if (imageUrl(); as url) {
+    <img
+      [src]="url"
+      [alt]="profile().name"
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+  } @else {
+    <div class="flex h-full items-center justify-center text-xs text-red-900/50">Sin foto</div>
+  }
+
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent"></div>
+
+  @if (profile().city?.name; as cityName) {
+    <span class="absolute inset-x-0 bottom-2 text-center text-[11px] tracking-wide text-red-500/40">
+      {{ cityName }}
+    </span>
+  }
+</a>

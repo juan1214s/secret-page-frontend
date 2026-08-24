@@ -1,0 +1,9 @@
+{
+  "copyright": "© Perfiles Laborales. Todos los derechos reservados.",
+  "links": [
+    { "label": "Nosotros", "fragment": "sobre-nosotros" },
+    { "label": "FAQ's", "fragment": "faqs" },
+    { "label": "Términos y condiciones", "route": "/terminos-y-condiciones" }
+  ],
+  "acceptedPaymentsLabel": "Aceptamos:"
+}
