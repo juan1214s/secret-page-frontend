@@ -74,7 +74,5 @@ export interface TermsSection {
 }
 
 export interface TermsContent {
-  title: string;
-  updatedAt: string;
   sections: TermsSection[];
 }

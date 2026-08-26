@@ -14,9 +14,9 @@
 
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent"></div>
 
-  @if (profile().city?.name; as cityName) {
-    <span class="absolute inset-x-0 bottom-2 text-center text-[11px] tracking-wide text-red-500/40">
-      {{ cityName }}
+  @if (profile().name; as name) {
+    <span class="absolute inset-x-0 bottom-2 text-center text-[15px] tracking-wide text-red-500/40">
+      {{ name }}
     </span>
   }
 </a>

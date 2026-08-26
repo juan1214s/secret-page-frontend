@@ -1,29 +1,22 @@
-<section
-  class="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-6 text-center"
->
-  <div
-    class="absolute inset-0"
-    style="background:
+<section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-6 text-center">
+  <div class="absolute inset-0" style="background:
       radial-gradient(60% 50% at 12% 15%, rgba(139,0,0,0.35), transparent 60%),
       radial-gradient(55% 45% at 90% 85%, rgba(139,0,0,0.30), transparent 60%),
-      radial-gradient(80% 60% at 50% 50%, #0a0000 0%, #000000 70%);"
-  ></div>
+      radial-gradient(80% 60% at 50% 50%, #0a0000 0%, #000000 70%);"></div>
   <div class="absolute inset-0 bg-black/30"></div>
 
   <div class="relative z-10 flex flex-col items-center gap-8">
     <p class="max-w-2xl text-2xl font-bold leading-snug text-red-500 sm:text-4xl">
       {{ header.phrase }}
     </p>
-    <a
-      [href]="'#' + header.scrollTargetId"
-      class="rounded-full border border-red-600 bg-red-600/10 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-red-400 transition-colors hover:bg-red-600/20"
-    >
+    <a [href]="'#' + header.scrollTargetId"
+      class="rounded-full border border-red-600 bg-red-600/10 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-red-400 transition-colors hover:bg-red-600/20">
       {{ header.buttonLabel }}
     </a>
   </div>
 </section>
 
-<section class="border-t border-red-900/30 bg-black px-6 py-16">
+<section class="border-t border-red-900/30 bg-zinc-950 px-6 py-16">
   <div class="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
     <h2 class="max-w-xs text-xl font-bold text-red-500 sm:text-2xl">
       {{ testimonials.heading }}
@@ -31,40 +24,46 @@
 
     <div class="flex flex-wrap justify-center gap-8 lg:justify-end">
       @for (item of testimonials.items; track $index) {
-        <div class="flex w-32 flex-col items-center gap-2 text-center">
-          <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 20c1.5-5 4.8-7.5 8-7.5s6.5 2.5 8 7.5" />
+      <div class="flex w-32 flex-col items-center gap-2 text-center">
+        <svg viewBox="0 0 24 24" class="h-10 w-10 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 20c1.5-5 4.8-7.5 8-7.5s6.5 2.5 8 7.5" />
+        </svg>
+        <div class="flex gap-0.5 text-red-500">
+          @for (star of stars(item.rating); track $index) {
+          <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 fill-current">
+            <path d="M10 1.5l2.6 5.4 5.9.7-4.3 4.1 1.1 5.9L10 14.8l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.7z" />
           </svg>
-          <div class="flex gap-0.5 text-red-500">
-            @for (star of stars(item.rating); track $index) {
-              <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 fill-current">
-                <path
-                  d="M10 1.5l2.6 5.4 5.9.7-4.3 4.1 1.1 5.9L10 14.8l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.7z"
-                />
-              </svg>
-            }
-            @for (star of emptyStars(item.rating); track $index) {
-              <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 fill-current text-red-900/40">
-                <path
-                  d="M10 1.5l2.6 5.4 5.9.7-4.3 4.1 1.1 5.9L10 14.8l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.7z"
-                />
-              </svg>
-            }
-          </div>
-          <p class="text-xs italic text-red-500/70">"{{ item.quote }}"</p>
+          }
+          @for (star of emptyStars(item.rating); track $index) {
+          <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 fill-current text-red-900/40">
+            <path d="M10 1.5l2.6 5.4 5.9.7-4.3 4.1 1.1 5.9L10 14.8l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.7z" />
+          </svg>
+          }
         </div>
+        <p class="text-xs italic text-red-500/70">"{{ item.quote }}"</p>
+      </div>
       }
     </div>
   </div>
 </section>
 
-<section id="sobre-nosotros" class="border-t border-red-900/30 bg-zinc-950 px-6 py-20">
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="mb-6 text-2xl font-bold text-red-500">{{ about.heading }}</h2>
-    @for (paragraph of about.paragraphs; track $index) {
+<section id="sobre-nosotros" class="border-t border-red-900/30 bg-black px-6 py-20">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-[60%_40%]">
+    <div class="max-w-2xl text-justify">
+      <h2 class="mb-6 text-2xl font-bold text-red-500">{{ about.heading }}</h2>
+      @for (paragraph of about.paragraphs; track $index) {
       <p class="mb-4 text-sm leading-relaxed text-red-500/70">{{ paragraph }}</p>
-    }
+      }
+    </div>
+    <div class="h-full w-full">
+      <img
+        src="img2.webp"
+        alt="img-about"
+        loading="lazy"
+        class="h-full w-full object-cover"
+      />
+    </div>
   </div>
 </section>
 
@@ -72,29 +71,29 @@
   <div class="mx-auto max-w-6xl">
     <h2 class="mb-12 text-center text-2xl font-bold text-red-500">{{ services.heading }}</h2>
     <div
-      class="grid grid-cols-1 divide-y divide-red-900/30 overflow-hidden rounded-lg border border-red-900/20 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4"
-    >
+      class="grid grid-cols-1 divide-y divide-red-900/30 overflow-hidden rounded-lg border border-red-900/20 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
       @for (service of services.items; track $index) {
-        <div class="flex flex-col items-center gap-3 p-8 text-center">
-          <svg viewBox="0 0 24 24" class="h-8 w-8 text-red-500" fill="none" stroke="currentColor" stroke-width="1.6">
-            @switch (service.icon) {
-              @case ('shield') {
-                <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" />
-              }
-              @case ('map-pin') {
-                <path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" /><circle cx="12" cy="10" r="2.4" />
-              }
-              @case ('chat') {
-                <path d="M4 5h16v11H8l-4 4V5z" />
-              }
-              @case ('star') {
-                <path d="M12 3l2.6 5.4 5.9.7-4.3 4.1 1.1 5.9L12 16.3l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.7z" />
-              }
-            }
-          </svg>
-          <h3 class="font-semibold text-red-400">{{ service.title }}</h3>
-          <p class="text-sm text-red-500/60">{{ service.description }}</p>
-        </div>
+      <div class="flex flex-col items-center gap-3 p-8 text-center">
+        <svg viewBox="0 0 24 24" class="h-8 w-8 text-red-500" fill="none" stroke="currentColor" stroke-width="1.6">
+          @switch (service.icon) {
+          @case ('shield') {
+          <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" />
+          }
+          @case ('map-pin') {
+          <path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" />
+          <circle cx="12" cy="10" r="2.4" />
+          }
+          @case ('chat') {
+          <path d="M4 5h16v11H8l-4 4V5z" />
+          }
+          @case ('star') {
+          <path d="M12 3l2.6 5.4 5.9.7-4.3 4.1 1.1 5.9L12 16.3l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.7z" />
+          }
+          }
+        </svg>
+        <h3 class="font-semibold text-red-400">{{ service.title }}</h3>
+        <p class="text-sm text-red-500/60">{{ service.description }}</p>
+      </div>
       }
     </div>
   </div>
@@ -108,27 +107,24 @@
     </div>
 
     @if (loading()) {
-      <p class="text-center text-sm text-red-500/50">{{ profilesContent.loadingMessage }}</p>
+    <p class="text-center text-sm text-red-500/50">{{ profilesContent.loadingMessage }}</p>
     } @else if (loadError() || profiles().length === 0) {
-      <p class="text-center text-sm text-red-500/50">{{ profilesContent.emptyMessage }}</p>
+    <p class="text-center text-sm text-red-500/50">{{ profilesContent.emptyMessage }}</p>
     } @else {
-      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-        @for (profile of visibleProfiles(); track profile.id) {
-          <app-profile-card [profile]="profile" />
-        }
-      </div>
-
-      @if (hasMore()) {
-        <div class="mt-10 flex justify-center">
-          <button
-            type="button"
-            (click)="showMore()"
-            class="rounded-full border border-red-600 px-6 py-2 text-sm font-semibold text-red-400 transition-colors hover:bg-red-600/10"
-          >
-            {{ profilesContent.showMoreLabel }}
-          </button>
-        </div>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      @for (profile of visibleProfiles(); track profile.id) {
+      <app-profile-card [profile]="profile" />
       }
+    </div>
+
+    @if (hasMore()) {
+    <div class="mt-10 flex justify-center">
+      <button type="button" (click)="showMore()"
+        class="rounded-full border border-red-600 px-6 py-2 text-sm font-semibold text-red-400 transition-colors hover:bg-red-600/10">
+        {{ profilesContent.showMoreLabel }}
+      </button>
+    </div>
+    }
     }
   </div>
 </section>
@@ -138,19 +134,16 @@
     <h2 class="mb-10 text-center text-2xl font-bold text-red-500">{{ faq.heading }}</h2>
     <div class="flex flex-col divide-y divide-red-900/20 border-y border-red-900/20">
       @for (item of faq.items; track $index) {
-        <div class="py-4">
-          <button
-            type="button"
-            (click)="toggleFaq($index)"
-            class="flex w-full items-center justify-between gap-4 text-left text-sm font-semibold text-red-400"
-          >
-            <span>{{ item.question }}</span>
-            <span class="text-red-500">{{ openFaqIndex() === $index ? '−' : '+' }}</span>
-          </button>
-          @if (openFaqIndex() === $index) {
-            <p class="mt-3 text-sm leading-relaxed text-red-500/70">{{ item.answer }}</p>
-          }
-        </div>
+      <div class="py-4">
+        <button type="button" (click)="toggleFaq($index)"
+          class="flex w-full items-center justify-between gap-4 text-left text-sm font-semibold text-red-400">
+          <span>{{ item.question }}</span>
+          <span class="text-red-500">{{ openFaqIndex() === $index ? '−' : '+' }}</span>
+        </button>
+        @if (openFaqIndex() === $index) {
+        <p class="mt-3 text-sm leading-relaxed text-red-500/70">{{ item.answer }}</p>
+        }
+      </div>
       }
     </div>
   </div>
@@ -160,12 +153,8 @@
   <div class="mx-auto flex max-w-xl flex-col items-center gap-5">
     <h2 class="text-2xl font-bold text-red-500">{{ contact.heading }}</h2>
     <p class="text-sm text-red-500/70">{{ contact.text }}</p>
-    <a
-      [href]="whatsappHref()"
-      target="_blank"
-      rel="noopener"
-      class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500"
-    >
+    <a [href]="whatsappHref()" target="_blank" rel="noopener"
+      class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500">
       {{ contact.buttonLabel }}
     </a>
   </div>
