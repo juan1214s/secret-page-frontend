@@ -4,6 +4,17 @@ export interface HeaderContent {
   scrollTargetId: string;
 }
 
+export interface TopBarContent {
+  phrase: string;
+}
+
+export interface AgeGateContent {
+  title: string;
+  message: string;
+  acceptLabel: string;
+  rejectLabel: string;
+}
+
 export interface TestimonialItem {
   rating: number;
   quote: string;
@@ -17,6 +28,10 @@ export interface TestimonialsContent {
 export interface AboutContent {
   heading: string;
   paragraphs: string[];
+}
+
+export interface CommitmentContent {
+  phrase: string;
 }
 
 export interface ServiceItem {

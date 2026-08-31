@@ -1,5 +1,36 @@
-<div class="flex min-h-screen flex-col bg-black text-red-500">
-  <header class="border-b border-red-900/30 bg-black">
+@if (!ageVerified()) {
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black p-6">
+  <div class="w-full max-w-md rounded-lg border border-red-900/40 bg-zinc-950 p-8 text-center shadow-2xl shadow-red-950/50">
+    <h2 class="mb-4 text-xl font-bold text-red-500">{{ ageGate.title }}</h2>
+    <p class="mb-8 text-sm leading-relaxed text-red-500/70">{{ ageGate.message }}</p>
+    <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
+      <button
+        type="button"
+        (click)="confirmAge()"
+        class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500"
+      >
+        {{ ageGate.acceptLabel }}
+      </button>
+      <button
+        type="button"
+        (click)="rejectAge()"
+        class="rounded-full border border-red-900/40 px-8 py-3 text-sm font-semibold text-red-500/70 transition-colors hover:bg-red-950/30"
+      >
+        {{ ageGate.rejectLabel }}
+      </button>
+    </div>
+  </div>
+</div>
+}
+
+<div class="flex min-h-screen flex-col bg-black text-red-500" [class.overflow-hidden]="!ageVerified()">
+  <div class="border-b border-red-900/30 bg-black">
+    <p class="mx-auto max-w-6xl px-6 py-2 text-center text-xs text-red-500/70 sm:text-sm">
+      {{ topbar.phrase }}
+    </p>
+  </div>
+
+  <header class="border-b border-red-900/30 bg-transparent">
     <div class="mx-auto flex max-w-6xl items-center justify-center px-6 py-4">
       <a routerLink="/" class="text-4xl font-bold tracking-wide">
         <span class="text-red-700">EL SECRETO</span>

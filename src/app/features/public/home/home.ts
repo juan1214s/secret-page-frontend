@@ -6,6 +6,7 @@ import { ProfileCard } from '../components/profile-card/profile-card';
 import headerContent from '../../../content/header.content.json';
 import testimonialsContent from '../../../content/testimonials.content.json';
 import aboutContent from '../../../content/about.content.json';
+import commitmentContent from '../../../content/commitment.content.json';
 import servicesContent from '../../../content/services.content.json';
 import profilesContent from '../../../content/profiles.content.json';
 import faqContent from '../../../content/faq.content.json';
@@ -13,6 +14,7 @@ import contactContent from '../../../content/contact.content.json';
 
 import {
   AboutContent,
+  CommitmentContent,
   ContactContent,
   FaqContent,
   HeaderContent,
@@ -34,6 +36,7 @@ export class Home implements OnInit {
   protected readonly header: HeaderContent = headerContent;
   protected readonly testimonials: TestimonialsContent = testimonialsContent;
   protected readonly about: AboutContent = aboutContent;
+  protected readonly commitment: CommitmentContent = commitmentContent;
   protected readonly services: ServicesContent = servicesContent;
   protected readonly profilesContent: ProfilesContent = profilesContent;
   protected readonly faq: FaqContent = faqContent;
