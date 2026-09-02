@@ -32,6 +32,8 @@ export interface AboutContent {
 
 export interface CommitmentContent {
   phrase: string;
+  message: string;
+  buttonLabel: string;
 }
 
 export interface ServiceItem {

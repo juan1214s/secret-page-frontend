@@ -2,24 +2,34 @@
   "heading": "Nuestros servicios",
   "items": [
     {
-      "icon": "shield",
-      "title": "Perfiles verificados",
-      "description": "Cada publicación pasa por una revisión antes de estar visible al público."
+      "icon": "shield-check",
+      "title": "Compañía Eventual",
+      "description": "Comparte momentos agradables con una compañía auténtica, discreta y adaptada a cualquier ocasión."
     },
     {
-      "icon": "map-pin",
-      "title": "Búsqueda por ciudad",
-      "description": "Encuentra perfiles disponibles cerca de ti en distintas ciudades del país."
+      "icon": "calendar-heart",
+      "title": "Acompañante Eventual",
+      "description": "El complemento ideal para eventos, cenas, reuniones o salidas especiales con elegancia y buena presencia."
     },
     {
-      "icon": "chat",
-      "title": "Contacto directo",
-      "description": "Comunícate directamente por WhatsApp sin intermediarios ni demoras."
+      "icon": "heart-handshake",
+      "title": "GFE (Girlfriend Experience)",
+      "description": "Una experiencia cercana, natural y exclusiva, donde la conexión y la complicidad son protagonistas."
     },
     {
-      "icon": "star",
-      "title": "Soporte prioritario",
-      "description": "Atención dedicada para resolver dudas antes y después de contactar."
+      "icon": "gem",
+      "title": "Compañía VIP",
+      "description": "Servicio premium con atención exclusiva, discreción absoluta y una experiencia a otro nivel."
+    },
+    {
+      "icon": "crown",
+      "title": "Acompañante VIP",
+      "description": "Elegancia, exclusividad y atención personalizada para eventos, viajes y experiencias distinguidas."
+    },
+    {
+      "icon": "flame",
+      "title": "PSE (Porn Star Experience)",
+      "description": "Una experiencia intensa, exclusiva y personalizada para quienes buscan vivir una fantasía de alto nivel."
     }
   ]
 }

@@ -36,6 +36,21 @@ body {
   height: 100%;
 }
 
+/* Lento efecto "ken burns" para la imagen del banner */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.hero-zoom {
+  animation: hero-zoom 20s ease-in-out infinite alternate;
+}
+
+
 body {
   margin: 0;
   background: var(--color-bg);
