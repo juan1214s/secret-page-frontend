@@ -1,7 +1,12 @@
 <section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-6 text-center">
   <div class="absolute inset-0 mx-auto max-w-[1920px] overflow-hidden">
-    <img src="https://images-page-web.s3.us-east-1.amazonaws.com/img-3.webp" alt="" aria-hidden="true"
-      class="hero-zoom h-full w-full object-cover object-[50%_30%]" />
+    <picture>
+      <source
+        media="(min-width: 1000px)"
+        srcset="Banner2.jpeg" />
+      <img src="https://images-page-web.s3.us-east-1.amazonaws.com/img-3.webp" alt="" aria-hidden="true"
+        class="hero-zoom h-full w-full object-cover object-[50%_50%]" />
+    </picture>
   </div>
   <div class="absolute inset-0" style="background:
       radial-gradient(60% 50% at 12% 15%, rgba(139,0,0,0.30), transparent 60%),
@@ -179,7 +184,7 @@
   </div>
 </section>
 
-<section id="faqs" class="border-t border-red-900/30 bg-black px-6 py-20">
+<!-- <section id="faqs" class="border-t border-red-900/30 bg-black px-6 py-20">
   <div class="mx-auto max-w-3xl">
     <h2 class="mb-10 text-center text-2xl font-bold text-red-500">{{ faq.heading }}</h2>
     <div class="flex flex-col divide-y divide-red-900/20 border-y border-red-900/20">
@@ -197,7 +202,7 @@
       }
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="border-t border-red-900/30 bg-gradient-to-b from-red-950/20 to-black px-6 py-20 text-center">
   <div class="mx-auto flex max-w-xl flex-col items-center gap-5">
