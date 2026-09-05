@@ -1,9 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import ageGateContent from '../../content/agegate.content.json';
 import footerContent from '../../content/footer.content.json';
 import topbarContent from '../../content/topbar.content.json';
-import { AgeGateContent, FooterContent, TopBarContent } from '../../core/models/content.model';
+import {
+  AgeGateContent,
+  FooterContent,
+  TopBarContent,
+} from '../../core/models/content.model';
 
 const AGE_VERIFIED_KEY = 'age-verified';
 
@@ -18,6 +22,15 @@ export class PublicShell {
   protected readonly ageGate: AgeGateContent = ageGateContent;
 
   protected readonly ageVerified = signal(this.readStoredVerification());
+
+  constructor() {
+    // El overlay del gate de edad es `fixed`, así que no basta con recortar
+    // un div interno: en mobile el body de abajo sigue siendo scrolleable
+    // por touch aunque esté tapado, y al cerrar el gate aparece ya movido.
+    effect(() => {
+      document.body.classList.toggle('overflow-hidden', !this.ageVerified());
+    });
+  }
 
   protected confirmAge(): void {
     try {
