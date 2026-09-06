@@ -1,21 +1,16 @@
 @if (!ageVerified()) {
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-black p-6">
-  <div class="w-full max-w-md rounded-lg border border-red-900/40 bg-zinc-950 p-8 text-center shadow-2xl shadow-red-950/50">
+  <div
+    class="w-full max-w-md rounded-lg border border-red-900/40 bg-zinc-950 p-8 text-center shadow-2xl shadow-red-950/50">
     <h2 class="mb-4 text-xl font-bold text-red-500">{{ ageGate.title }}</h2>
     <p class="mb-8 text-sm leading-relaxed text-red-500/70">{{ ageGate.message }}</p>
     <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
-      <button
-        type="button"
-        (click)="confirmAge()"
-        class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500"
-      >
+      <button type="button" (click)="confirmAge()"
+        class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500">
         {{ ageGate.acceptLabel }}
       </button>
-      <button
-        type="button"
-        (click)="rejectAge()"
-        class="rounded-full border border-red-900/40 px-8 py-3 text-sm font-semibold text-red-500/70 transition-colors hover:bg-red-950/30"
-      >
+      <button type="button" (click)="rejectAge()"
+        class="rounded-full border border-red-900/40 px-8 py-3 text-sm font-semibold text-red-500/70 transition-colors hover:bg-red-950/30">
         {{ ageGate.rejectLabel }}
       </button>
     </div>
@@ -25,7 +20,7 @@
 
 <div class="flex min-h-screen flex-col bg-black text-red-500" [class.overflow-hidden]="!ageVerified()">
   <div class="mx-auto flex w-full max-w-[1400px] flex-1 flex-col">
-    <div class="border-b border-red-900/30 bg-black">
+    <div class="hidden border-b border-red-900/30 bg-black sm:block">
       <p class="mx-auto max-w-6xl px-6 py-2 text-center text-xs text-red-500/70 sm:text-sm">
         {{ topbar.phrase }}
       </p>
@@ -44,40 +39,43 @@
     </main>
 
     <footer class="border-t border-red-900/30 bg-black">
-    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10 md:flex-row md:items-start md:justify-between">
-      <div class="flex flex-col gap-3">
-        <span class="text-sm text-red-500/60">{{ footer.copyright }}</span>
-        <div class="flex flex-wrap items-center gap-3 text-xs text-red-500/50">
-          <span>{{ footer.acceptedPaymentsLabel }}</span>
-          <span class="inline-flex gap-2">
-            <svg viewBox="0 0 24 16" class="h-5 w-8">
-              <rect x="0.5" y="0.5" width="23" height="15" rx="2" fill="#1434CB" stroke="#0d2489" stroke-width="0.5" />
-              <rect x="0.5" y="6" width="23" height="2.5" fill="#f7b600" />
-              <rect x="3" y="10.5" width="7" height="2" rx="0.5" fill="#ffffff" />
-            </svg>
-            <svg viewBox="0 0 24 16" class="h-5 w-8">
-              <rect x="0.5" y="0.5" width="23" height="15" rx="2" fill="#f5f5f5" stroke="#d0d0d0" stroke-width="0.5" />
-              <circle cx="10" cy="8" r="4.6" fill="#eb001b" />
-              <circle cx="14" cy="8" r="4.6" fill="#f79e1b" fill-opacity="0.9" />
-            </svg>
-            <svg viewBox="0 0 24 16" class="h-5 w-8">
-              <rect x="0.5" y="0.5" width="23" height="15" rx="2" fill="#2e77bb" stroke="#1e5a94" stroke-width="0.5" />
-              <rect x="0.5" y="3.5" width="23" height="2" fill="#ffffff" fill-opacity="0.85" />
-              <rect x="3" y="9.5" width="9" height="2" rx="0.5" fill="#ffffff" fill-opacity="0.9" />
-            </svg>
-          </span>
+      <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10 md:flex-row md:items-start md:justify-between">
+        <div class="flex flex-col gap-3">
+          <span class="text-sm text-red-500/60">{{ footer.copyright }}</span>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-red-500/50">
+            <span>{{ footer.acceptedPaymentsLabel }}</span>
+            <span class="inline-flex gap-2">
+              <svg viewBox="0 0 24 16" class="h-5 w-8">
+                <rect x="0.5" y="0.5" width="23" height="15" rx="2" fill="#1434CB" stroke="#0d2489"
+                  stroke-width="0.5" />
+                <rect x="0.5" y="6" width="23" height="2.5" fill="#f7b600" />
+                <rect x="3" y="10.5" width="7" height="2" rx="0.5" fill="#ffffff" />
+              </svg>
+              <svg viewBox="0 0 24 16" class="h-5 w-8">
+                <rect x="0.5" y="0.5" width="23" height="15" rx="2" fill="#f5f5f5" stroke="#d0d0d0"
+                  stroke-width="0.5" />
+                <circle cx="10" cy="8" r="4.6" fill="#eb001b" />
+                <circle cx="14" cy="8" r="4.6" fill="#f79e1b" fill-opacity="0.9" />
+              </svg>
+              <svg viewBox="0 0 24 16" class="h-5 w-8">
+                <rect x="0.5" y="0.5" width="23" height="15" rx="2" fill="#2e77bb" stroke="#1e5a94"
+                  stroke-width="0.5" />
+                <rect x="0.5" y="3.5" width="23" height="2" fill="#ffffff" fill-opacity="0.85" />
+                <rect x="3" y="9.5" width="9" height="2" rx="0.5" fill="#ffffff" fill-opacity="0.9" />
+              </svg>
+            </span>
+          </div>
         </div>
-      </div>
 
-      <nav class="flex flex-col gap-2 text-sm">
-        @for (link of footer.links; track link.label) {
-        @if (link.route) {
-        <a [routerLink]="link.route" class="text-red-500/70 hover:text-red-400">{{ link.label }}</a>
-        } @else {
-        <a routerLink="/" [fragment]="link.fragment" class="text-red-500/70 hover:text-red-400">{{ link.label }}</a>
-        }
-        }
-      </nav>
+        <nav class="flex flex-col gap-2 text-sm">
+          @for (link of footer.links; track link.label) {
+          @if (link.route) {
+          <a [routerLink]="link.route" class="text-red-500/70 hover:text-red-400">{{ link.label }}</a>
+          } @else {
+          <a routerLink="/" [fragment]="link.fragment" class="text-red-500/70 hover:text-red-400">{{ link.label }}</a>
+          }
+          }
+        </nav>
       </div>
     </footer>
   </div>

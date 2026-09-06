@@ -1,9 +1,7 @@
 <section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-6 text-center">
   <div class="absolute inset-0 mx-auto max-w-[1920px] overflow-hidden">
     <picture>
-      <source
-        media="(min-width: 1000px)"
-        srcset="Banner2.jpeg" />
+      <source media="(min-width: 1000px)" srcset="Banner2.jpeg" />
       <img src="https://images-page-web.s3.us-east-1.amazonaws.com/img4.webp" alt="" aria-hidden="true"
         class="hero-zoom h-full w-full md:object-cover object-[50%_50%]" />
     </picture>
@@ -16,16 +14,21 @@
       radial-gradient(60% 45% at 50% 48%, rgba(0,0,0,0.72), transparent 78%),
       linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 32%, transparent 68%, rgba(0,0,0,0.88) 100%);"></div>
 
-  <div class="relative z-10 flex flex-col items-center gap-8">
-    <p
-      class="max-w-2xl text-2xl font-bold leading-snug text-red-500 sm:text-4xl [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
-      {{ header.phrase }}
+<div class="relative z-10 flex flex-col items-center gap-8">
+  <div class="max-w-2xl">
+    <p class="leading-snug [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
+      <span class="text-2xl font-bold text-red-500 sm:text-4xl">{{ header.phrase }}</span>
+      <span class="mt-30 block text-xs text-red-500/70 sm:mt-0 sm:ml-2 sm:inline">
+        En El <span class="font-bold text-red-500">Secreto</span>, la exclusividad, la calidad y la privacidad no son
+        un privilegio, sino el estándar que define cada experiencia.
+      </span>
     </p>
-    <button type="button" (click)="scrollToTarget()"
-      class="rounded-full border border-red-600 bg-red-600/10 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-red-400 transition-colors hover:bg-red-600/20">
-      {{ header.buttonLabel }}
-    </button>
   </div>
+  <button type="button" (click)="scrollToTarget()"
+    class="mb-38 md:mb-0 rounded-full border border-red-600 bg-red-600/10 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-red-400 transition-colors hover:bg-red-600/20">
+    {{ header.buttonLabel }}
+  </button>
+</div>
 </section>
 
 <section class="border-t border-red-900/30 bg-zinc-950 px-6 py-16">
@@ -83,9 +86,9 @@
 </section>
 
 <section id="compromiso" class="-mt-20 hidden border-t border-red-900/30 bg-zinc-950 px-6 py-5 md:block">
-  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-[60%_40%]">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-[60%_45%]">
     <div></div>
-    <div class="max-w-2xl pr-4 text-justify md:pr-10">
+    <div class="max-w-2xl pr-4 text-justify md:pr-30">
       <span class=" block font-script text-[14rem] leading-none text-white">&ldquo;</span>
       <p class="-mt-30 font-script text-2xl leading-relaxed text-white">{{ commitment.phrase }}</p>
     </div>
