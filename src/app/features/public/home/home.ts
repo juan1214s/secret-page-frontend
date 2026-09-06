@@ -81,6 +81,10 @@ export class Home implements OnInit {
     this.openFaqIndex.update((current) => (current === index ? null : index));
   }
 
+  protected scrollToTarget(): void {
+    document.getElementById(this.header.scrollTargetId)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   protected stars(rating: number): number[] {
     return Array.from({ length: rating });
   }
