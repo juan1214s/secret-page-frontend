@@ -28,14 +28,16 @@
     </div>
 
     <div class="relative flex-1">
-      <header class="absolute inset-x-0 top-0 z-20">
-        <div class="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 py-4">
-          <div></div>
-          <a routerLink="/" class="font-display-public justify-self-center text-xl tracking-wide sm:text-4xl">
+      <header
+        class="border-b border-red-900/30 bg-black sm:absolute sm:inset-x-0 sm:top-0 sm:z-20 sm:border-none sm:bg-transparent">
+        <div class="mx-auto flex max-w-6xl items-center justify-center px-6 py-4 sm:grid sm:grid-cols-3">
+          <div class="hidden sm:block"></div>
+          <a routerLink="/"
+            class="font-display-public text-xl tracking-wide sm:justify-self-center sm:text-4xl">
             <span class="text-red-700">EL SECRETO</span>
           </a>
           <a routerLink="/" fragment="perfiles"
-            class="justify-self-end text-xs font-medium text-[#E00000] transition-colors hover:text-red-400 sm:text-sm">
+            class="hidden text-xs font-medium text-[#E00000] transition-colors hover:text-red-400 sm:block sm:justify-self-end sm:text-sm">
             Colaboradoras
           </a>
         </div>
