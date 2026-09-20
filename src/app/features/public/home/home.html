@@ -1,4 +1,4 @@
-<section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-6 text-center">
+<section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-black px-6">
   <div class="absolute inset-0 mx-auto max-w-[1920px] overflow-hidden">
     <picture>
       <source media="(min-width: 1000px)" srcset="Banner2.jpeg" />
@@ -14,18 +14,18 @@
       radial-gradient(60% 45% at 50% 48%, rgba(0,0,0,0.72), transparent 78%),
       linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 32%, transparent 68%, rgba(0,0,0,0.88) 100%);"></div>
 
-<div class="relative z-10 flex flex-col items-center gap-8">
-  <div class="max-w-2xl">
-    <p class="leading-snug [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
-      <span class="text-2xl font-bold text-red-500 sm:text-4xl">{{ header.phrase }}</span>
-      <span class="mt-30 block text-xs text-red-500/70 sm:mt-0 sm:ml-2 sm:inline">
+<div class="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center gap-8 text-center">
+  <div>
+    <p class="leading-[1.1] [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
+      <span class="font-display-public text-2xl tracking-tight text-[#A80000] sm:text-5xl">{{ header.phrase }}</span>
+      <span class="mt-6 block text-sm text-red-500/70 sm:mt-2 sm:inline">
         En El <span class="font-bold text-red-500">Secreto</span>, la exclusividad, la calidad y la privacidad no son
         un privilegio, sino el estándar que define cada experiencia.
       </span>
     </p>
   </div>
   <button type="button" (click)="scrollToTarget()"
-    class="mb-38 md:mb-0 rounded-full border border-red-600 bg-red-600/10 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-red-400 transition-colors hover:bg-red-600/20">
+    class="mb-38 rounded-md border border-red-700 bg-red-950/80 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-900 md:mb-0">
     {{ header.buttonLabel }}
   </button>
 </div>
@@ -33,7 +33,7 @@
 
 <section class="border-t border-red-900/30 bg-zinc-950 px-6 py-16">
   <div class="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-    <h2 class="max-w-xs text-xl font-bold text-red-500 sm:text-2xl">
+    <h2 class="max-w-xs text-xl font-bold text-[#A80000] sm:text-2xl">
       {{ testimonials.heading }}
     </h2>
 
@@ -66,7 +66,7 @@
 <section id="sobre-nosotros" class="border-t border-red-900/30 bg-black px-6 py-20">
   <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-[60%_40%]">
     <div class="max-w-2xl text-justify">
-      <h2 class="mb-6 text-2xl font-bold text-red-500">{{ about.heading }}</h2>
+      <h2 class="mb-6 text-2xl font-bold text-[#A80000]">{{ about.heading }}</h2>
       @for (paragraph of about.paragraphs; track $index) {
       <p class="mb-4 text-sm leading-relaxed text-red-500/70">{{ paragraph }}</p>
       }
@@ -99,7 +99,7 @@
   <div class="mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
     <p class="text-lg font-semibold text-red-400">{{ commitment.message }}</p>
     <a [href]="whatsappHref()" target="_blank" rel="noopener"
-      class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500">
+      class="rounded-md border border-red-700 bg-red-950/80 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-900">
       {{ commitment.buttonLabel }}
     </a>
   </div>
@@ -107,7 +107,7 @@
 
 <section class="border-t border-red-900/30 bg-black px-6 py-20">
   <div class="mx-auto max-w-6xl">
-    <h2 class="mb-12 text-center text-2xl font-bold text-red-500">{{ services.heading }}</h2>
+    <h2 class="mb-12 text-center text-2xl font-bold text-[#A80000]">{{ services.heading }}</h2>
     <div
       class="grid grid-cols-1 divide-y divide-red-900/30 overflow-hidden rounded-lg border border-red-900/20 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
       @for (service of services.items; track $index) {
@@ -149,7 +149,7 @@
 
           }
         </svg>
-        <h3 class="font-semibold text-red-400">{{ service.title }}</h3>
+        <h3 class="font-semibold text-[#A80000]">{{ service.title }}</h3>
         <p class="text-sm text-red-500/60">{{ service.description }}</p>
       </div>
       }
@@ -160,7 +160,7 @@
 <section id="perfiles" class="border-t border-red-900/30 bg-zinc-950 px-6 py-20">
   <div class="mx-auto max-w-6xl">
     <div class="mb-10 text-center">
-      <h2 class="text-2xl font-bold text-red-500">{{ profilesContent.heading }}</h2>
+      <h2 class="text-2xl font-bold text-[#A80000]">{{ profilesContent.heading }}</h2>
       <p class="mt-2 text-sm text-red-500/60">{{ profilesContent.subheading }}</p>
     </div>
 
@@ -178,7 +178,7 @@
     @if (hasMore()) {
     <div class="mt-10 flex justify-center">
       <button type="button" (click)="showMore()"
-        class="rounded-full border border-red-600 px-6 py-2 text-sm font-semibold text-red-400 transition-colors hover:bg-red-600/10">
+        class="rounded-md border border-red-700 bg-red-950/80 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-900">
         {{ profilesContent.showMoreLabel }}
       </button>
     </div>
@@ -209,10 +209,10 @@
 
 <section class="border-t border-red-900/30 bg-gradient-to-b from-red-950/20 to-black px-6 py-20 text-center">
   <div class="mx-auto flex max-w-xl flex-col items-center gap-5">
-    <h2 class="text-2xl font-bold text-red-500">{{ contact.heading }}</h2>
+    <h2 class="text-2xl font-bold text-[#A80000]">{{ contact.heading }}</h2>
     <p class="text-sm text-red-500/70">{{ contact.text }}</p>
     <a [href]="whatsappHref()" target="_blank" rel="noopener"
-      class="rounded-full bg-red-600 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500">
+      class="rounded-md border border-red-700 bg-red-950/80 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-900">
       {{ contact.buttonLabel }}
     </a>
   </div>

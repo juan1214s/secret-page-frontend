@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&family=Outfit:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 /*
@@ -29,6 +30,13 @@
   --font-sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, Menlo, monospace;
   --font-script: "Great Vibes", cursive;
+
+  /* Tipografía del sitio público (no admin): Krona One para títulos, Outfit para texto. */
+  --font-krona: "Krona One", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+
+  --font-display-public: var(--font-krona);
+  --font-body-public: var(--font-outfit);
 }
 
 html,
@@ -57,6 +65,18 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Sitio público (todo lo que cuelga de public-shell): tipografía propia,
+   independiente de la fuente --font-sans que usa el admin. */
+.public-scope {
+  font-family: var(--font-body-public);
+}
+
+.public-scope h1,
+.public-scope h2,
+.public-scope h3 {
+  font-family: var(--font-display-public);
 }
 
 ::selection {

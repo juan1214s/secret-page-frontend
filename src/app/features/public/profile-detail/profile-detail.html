@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-5xl px-6 py-12">
+<div class="mx-auto max-w-5xl px-6 pb-12 pt-28">
   <a routerLink="/" fragment="perfiles" class="mb-8 inline-flex items-center gap-2 text-sm text-red-500/70 hover:text-red-400">
     <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
     Volver a perfiles
@@ -15,7 +15,7 @@
       <app-image-gallery [images]="p.images ?? []" />
 
       <div class="flex flex-col gap-4">
-        <h1 class="text-3xl font-bold text-red-500">{{ p.name }}</h1>
+        <h1 class="text-3xl font-bold text-[#A80000]">{{ p.name }}</h1>
         @if (p.city?.name) {
           <p class="text-sm uppercase tracking-wide text-red-500/50">{{ p.city?.name }}</p>
         }
@@ -27,7 +27,7 @@
           [href]="whatsappHref()"
           target="_blank"
           rel="noopener"
-          class="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500"
+          class="mt-4 inline-flex w-fit items-center gap-2 rounded-md border border-red-700 bg-red-950/80 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-900"
         >
           Contactar por WhatsApp
         </a>
@@ -35,7 +35,7 @@
     </div>
 
     <section class="mt-16">
-      <h2 class="mb-6 text-xl font-bold text-red-500">Comentarios</h2>
+      <h2 class="mb-6 text-xl font-bold text-[#A80000]">Comentarios</h2>
 
       @if (comments().length === 0) {
         <p class="text-sm text-red-500/50">Aún no hay comentarios para este perfil.</p>
@@ -81,7 +81,7 @@
             <button
               type="submit"
               [disabled]="submitting()"
-              class="w-fit rounded-full border border-red-600 px-6 py-2 text-sm font-semibold text-red-400 transition-colors hover:bg-red-600/10 disabled:opacity-50"
+              class="w-fit rounded-md border border-red-700 bg-red-950/80 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-900 disabled:opacity-50"
             >
               {{ submitting() ? 'Enviando...' : 'Publicar comentario' }}
             </button>
