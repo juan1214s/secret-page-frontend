@@ -42,8 +42,6 @@ export class Home implements OnInit {
   protected readonly faq: FaqContent = faqContent;
   protected readonly contact: ContactContent = contactContent;
 
-  protected readonly openFaqIndex = signal<number | null>(null);
-
   protected readonly profiles = signal<Profile[]>([]);
   protected readonly visibleCount = signal(PAGE_SIZE);
   protected readonly loading = signal(true);
@@ -75,10 +73,6 @@ export class Home implements OnInit {
 
   protected showMore(): void {
     this.visibleCount.update((count) => count + PAGE_SIZE);
-  }
-
-  protected toggleFaq(index: number): void {
-    this.openFaqIndex.update((current) => (current === index ? null : index));
   }
 
   protected scrollToTarget(): void {

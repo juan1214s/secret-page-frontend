@@ -11,5 +11,14 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+// Los enlaces a secciones (#perfiles, #faqs...) dejan el fragmento en la URL.
+// Al recargar, el navegador y el Router (anchorScrolling) saltaban a esa
+// sección en vez de mostrar el banner. Quitamos el fragmento solo en la
+// carga inicial; los enlaces dentro de la app siguen funcionando igual.
+if (window.location.hash) {
+  history.replaceState(history.state, '', window.location.pathname + window.location.search);
+  window.scrollTo(0, 0);
+}
+
 bootstrapApplication(App, appConfig)
   .catch((err) => console.error(err));
