@@ -46,6 +46,7 @@ export class Home implements OnInit {
   protected readonly visibleCount = signal(PAGE_SIZE);
   protected readonly loading = signal(true);
   protected readonly loadError = signal(false);
+  protected readonly skeletonSlots = Array.from({ length: PAGE_SIZE });
 
   protected readonly visibleProfiles = computed(() => this.profiles().slice(0, this.visibleCount()));
   protected readonly hasMore = computed(() => this.visibleCount() < this.profiles().length);

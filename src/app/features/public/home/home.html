@@ -67,7 +67,15 @@
     </div>
 
     @if (loading()) {
-    <p class="text-center text-sm text-red-500/50">{{ profilesContent.loadingMessage }}</p>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6" role="status" aria-busy="true">
+      <span class="sr-only">{{ profilesContent.loadingMessage }}</span>
+      @for (slot of skeletonSlots; track $index) {
+      <div aria-hidden="true"
+        class="relative aspect-[3/4] animate-pulse overflow-hidden rounded-lg border border-red-900/20 bg-zinc-900">
+        <div class="absolute inset-x-6 bottom-3 h-3 rounded bg-red-900/20"></div>
+      </div>
+      }
+    </div>
     } @else if (loadError() || profiles().length === 0) {
     <p class="text-center text-sm text-red-500/50">{{ profilesContent.emptyMessage }}</p>
     } @else {
